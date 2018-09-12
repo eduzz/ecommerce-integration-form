@@ -1,0 +1,21 @@
+{
+  "name": "ecommerce-integration-form",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "watch": "webpack --watch --info-verbosity verbose",
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.1",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "axios": "^0.18.0",
+    "babel-loader": "^8.0.2",
+    "babel-preset-es2015": "^6.24.1",
+    "form-serialize-json": "^1.0.8",
+    "guid": "^0.0.12",
+    "json-query-string": "^1.0.0",
+    "webpack": "^4.18.0"
+  }
+}
