@@ -24,10 +24,8 @@ async function pay(event, errorHandler = null) {
 
         
         const TOKEN = (await axios.post(
-            'https://api-cs.eduzz.com/ecommerce/v2/token', {
-                'email': _config.email,
-                'public_key': _config.public,
-                'api_key': _config.api
+            'https://api-cs.eduzz.com/ecommerce/v2/token/secret', {
+                'secret': _config.secret
             }
         )).data.token;
 

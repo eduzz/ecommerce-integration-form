@@ -70,9 +70,7 @@ Seu site irá receber as informações em JavaScript através de um formulário 
         productId: 10000,
         checkoutProductId: 100000, 
         description: 'Doação',
-        email: 'exemplo@email.com',
-        public: '100000',
-        api: 'a000abc0'
+        secret: '922ec9531b1f94add983a8ce2ebdc97b',
     });
 </script>
 ```
@@ -89,9 +87,7 @@ Ao chamar a função `eduzzPayment.setConfig({ ... })` vocˆê dever'á passar o
 | productId | ID do seu Produto na Eduzz |
 | checkoutProductId | ID do seu Produto no Checkout |
 | description | Descrição da venda, o título que será exibido |
-| email | Seu Email na Eduzz |
-| public | Sua chave na Eduzz |
-| api | Sua API na Eduzz |
+| secret | Chave fornecida pela Eduzz para operar com o ecommerce |
 
 *Todas as informações podem ser fornecidas pelo suporte da Eduzz.*
 
