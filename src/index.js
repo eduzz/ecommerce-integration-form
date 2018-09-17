@@ -13,15 +13,12 @@ function setConfig(config) {
     _config = config;
 }
 
-async function pay(event, errorHandler = null) {
+async function pay(formData, errorHandler = null) {
     event.preventDefault();
     
     try {
         if(!_config)
             throw new Error('setConfig is not called correctly');
-        
-        const jsonFormData = formDataToJson(event.target);
-
         
         const TOKEN = (await axios.post(
             'https://api-cs.eduzz.com/ecommerce/v2/token/secret', {
@@ -45,16 +42,16 @@ async function pay(event, errorHandler = null) {
                       'product_id': _config.productId,
                       'checkout_product_id': _config.checkoutProductId,
                       'description': _config.description,
-                      'price': jsonFormData.price || null,
+                      'price': formData.price || null,
                       'amount': 1
                     }
                   ],
                   'customer': {
-                    'name': jsonFormData.name || null,
-                    'email': jsonFormData.email || null,
-                    'document': jsonFormData.document || null,
-                    'cellphone': jsonFormData.cellphone || null,
-                    'person_type': 'F'
+                    'name': formData.name || null,
+                    'email': formData.email || null,
+                    'document': formData.document || null,
+                    'cellphone': formData.cellphone || null,
+                    'person_type': formData.name || 'F'
                   }
                 }
             },
@@ -77,6 +74,7 @@ async function pay(event, errorHandler = null) {
 
 
 export const eduzzPayment = {
+    formDataToJson,
     pay,
     setConfig
 };
