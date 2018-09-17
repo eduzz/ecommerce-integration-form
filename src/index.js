@@ -51,7 +51,7 @@ async function pay(formData, errorHandler = null) {
                     'email': formData.email || null,
                     'document': formData.document || null,
                     'cellphone': formData.cellphone || null,
-                    'person_type': formData.name || 'F'
+                    'person_type': formData.personType || 'F'
                   }
                 }
             },

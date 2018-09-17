@@ -1,11 +1,11 @@
 {
   "name": "ecommerce-integration-form",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "license": "MIT",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/eduzz/ecommerce-integration-form.git"
-  },  
+    "type": "git",
+    "url": "https://github.com/eduzz/ecommerce-integration-form.git"
+  },
   "scripts": {
     "watch": "webpack --watch --info-verbosity verbose",
     "build": "webpack",
