@@ -61,23 +61,21 @@ Seu site irá receber as informações em JavaScript através de um formulário 
     <button type='submit' name='btn_login'>PAGAR</button>
 </form>
 <script type="text/javascript">
-    eduzzPayment.setConfig({
-        returnUrl: 'https://meusite.com/retorno/',
-        postbackUrl: 'https://meusite.com/postback/',
-        queryParams: {
-            skip: 1
-        },
-        productId: 10000,
-        checkoutProductId: 100000, 
-        description: 'Doação',
-        secret: '922ec9531b1f94add983a8ce2ebdc97b',
-    });
-    
     function pay(event) {
         event.preventDefault();
         var jsonFormData = eduzzPayment.formDataToJson(event.target);
 
-        // Aqui você pode manipular a informação antes de enviar para a API.
+        eduzzPayment.setConfig({
+            returnUrl: 'https://meusite.com/retorno/',
+            postbackUrl: 'https://meusite.com/postback/',
+            queryParams: {
+                skip: 1
+            },
+            productId: 10000,
+            checkoutProductId: 100000, 
+            description: 'Doação',
+            secret: '922ec9531b1f94add983a8ce2ebdc97b',
+        });
     
         const formData = {
             name: jsonFormData.name,

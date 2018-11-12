@@ -2,7 +2,7 @@ require('@babel/polyfill');
 
 import axios from 'axios';
 import guid from 'guid';
-import { jsonQueryStringifyObjectBare } from 'json-query-string';
+import {stringify} from 'query-string'
 import formDataToJson from './formDataToJson';
 
 axios.defaults.responseType = 'json';
@@ -64,7 +64,7 @@ async function pay(formData, errorHandler = null) {
 
         // Replace will be removed
         window.location.href = transaction.data.payment_url
-            .replace('?templateId=17', '?' + jsonQueryStringifyObjectBare(_config.queryParams));
+            .replace('?templateId=17', '?') + stringify(_config.queryParams);
     } catch (err) {
         typeof errorHandler === 'function' ? 
             errorHandler(err.response || err.message) : 
