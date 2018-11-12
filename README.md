@@ -42,7 +42,7 @@ Seu site irá receber as informações em JavaScript através de um formulário 
 ### Exemplo de implementação
 
 ```html
-<form onsubmit="eduzzPayment.pay(event)">
+<form onsubmit="payment(event)">
     <label for='edz-name'>Digite seu nome</label>
     <input type='text' name='edz-name' id='edz-name'/>
 
@@ -72,6 +72,23 @@ Seu site irá receber as informações em JavaScript através de um formulário 
         description: 'Doação',
         secret: '922ec9531b1f94add983a8ce2ebdc97b',
     });
+    
+    function pay(event) {
+        event.preventDefault();
+        var jsonFormData = eduzzPayment.formDataToJson(event.target);
+
+        // Aqui você pode manipular a informação antes de enviar para a API.
+    
+        const formData = {
+            name: jsonFormData.name,
+            email: jsonFormData.email,
+            document: jsonFormData.document,
+            cellphone: jsonFormData.cellphone,
+            price: jsonFormData.price,
+        }
+  
+        eduzzPayment.pay(formData);
+}
 </script>
 ```
 
