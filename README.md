@@ -42,7 +42,7 @@ Seu site irá receber as informações em JavaScript através de um formulário 
 ### Exemplo de implementação
 
 ```html
-<form onsubmit="payment(event)">
+<form onsubmit="pay(event)">
     <label for='edz-name'>Digite seu nome</label>
     <input type='text' name='edz-name' id='edz-name'/>
 
