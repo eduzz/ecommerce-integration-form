@@ -26,35 +26,44 @@ async function pay(formData, errorHandler = null) {
             }
         )).data.token;
 
-        const transaction = await axios.post(
-            'https://api-cs.eduzz.com/ecommerce/transaction',
-            {
-                'config': {
-                  'lang': 'pt'
-                },
-                'transaction': {
-                  'order_id': guid.raw(),
-                  'return_url': _config.returnUrl,
-                  'postback_url': _config.postbackUrl,
-                  'installments': 1,
-                  'items': [
-                    {
-                      'product_id': _config.productId,
-                      'checkout_product_id': _config.checkoutProductId,
-                      'description': _config.description,
-                      'price': formData.price || null,
-                      'amount': 1
-                    }
-                  ],
-                  'customer': {
+
+        let requestData = {
+            'config': {
+              'lang': 'pt'
+            },
+            'transaction': {
+              'order_id': guid.raw(),
+              'return_url': _config.returnUrl,
+              'postback_url': _config.postbackUrl,
+              'installments': 1,
+              'items': [
+                {
+                  'product_id': _config.productId,
+                  'checkout_product_id': _config.checkoutProductId,
+                  'description': _config.description,
+                  'price': formData.price || null,
+                  'amount': 1
+                }
+              ]
+            }
+        }
+        
+        if (!!formData.name || !!formData.name || !!formData.cellphone || !!formData.document) {
+            requestData.transaction = {
+                ...requestData.transaction,
+                'customer': {
                     'name': formData.name || null,
                     'email': formData.email || null,
                     'document': formData.document || null,
                     'cellphone': formData.cellphone || null,
                     'person_type': formData.personType || 'F'
-                  }
                 }
-            },
+            }
+        }
+
+        const transaction = await axios.post(
+            'https://api-cs.eduzz.com/ecommerce/transaction',
+            requestData,
             {
                 headers: {
                     Authorization: `Bearer ${TOKEN}`
