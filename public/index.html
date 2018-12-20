@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <form onsubmit="pay(event)">
+    <form id="payment_form">
     <label for='edz-name'>Digite seu nome</label>
     <input type='text' name='edz-name' id='edz-name'/>
 
@@ -27,13 +27,19 @@
     <button type='submit' name='btn_login'>PAGAR</button>
 </form>
 <script type="text/javascript">
+
+    form = document.getElementById("payment_form");
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        pay(event);
+    });
+
     function pay(event) {
-      event.preventDefault();
 
         var jsonFormData = eduzzPayment.formDataToJson(event.target);
 
         eduzzPayment.setConfig({
-            returnUrl: 'https://meusite.com/retorno/',
+            returnUrl: '',
             postbackUrl: 'https://meusite.com/postback/',
             queryParams: {
                 name: jsonFormData.name,
@@ -41,7 +47,7 @@
                 phone: jsonFormData.cellphone,
                 skip: 1
             },
-            productId: 9018,
+            productId: 38528,
             checkoutProductId: 2050828, 
             description: 'Doação',
             secret: 'IwosIio4LS09GSoENQc0ESJFJhggblt9ekJ3cHdiZB9/ST8ZZQxn',

@@ -14,7 +14,6 @@ function setConfig(config) {
 }
 
 async function pay(formData, errorHandler = null) {
-    event.preventDefault();
     
     try {
         if(!_config)
