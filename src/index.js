@@ -14,7 +14,6 @@ function setConfig(config) {
 }
 
 async function pay(formData, errorHandler = null) {
-    event.preventDefault();
     
     try {
         if(!_config)
@@ -72,8 +71,7 @@ async function pay(formData, errorHandler = null) {
         );
 
         // Replace will be removed
-        window.location.href = transaction.data.payment_url
-            .replace('?templateId=17', '?') + stringify(_config.queryParams);
+        window.location.href = transaction.data.payment_url + '?' + stringify(_config.queryParams);
     } catch (err) {
         typeof errorHandler === 'function' ? 
             errorHandler(err.response || err.message) : 

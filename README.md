@@ -42,7 +42,7 @@ Seu site irá receber as informações em JavaScript através de um formulário 
 ### Exemplo de implementação
 
 ```html
-<form onsubmit="pay(event)">
+<form id="payment_form">
     <label for='edz-name'>Digite seu nome</label>
     <input type='text' name='edz-name' id='edz-name'/>
 
@@ -61,8 +61,15 @@ Seu site irá receber as informações em JavaScript através de um formulário 
     <button type='submit' name='btn_login'>PAGAR</button>
 </form>
 <script type="text/javascript">
-    function pay(event) {
+
+    var form = document.getElementById("payment_form");
+
+    form.addEventListener("submit", function(event) {
         event.preventDefault();
+        pay(event);
+    });
+
+    function pay(event) {
         var jsonFormData = eduzzPayment.formDataToJson(event.target);
 
         eduzzPayment.setConfig({
@@ -93,16 +100,23 @@ Seu site irá receber as informações em JavaScript através de um formulário 
 ### Exemplo passando apenas o valor do produto
 
 ```html
-<form onsubmit="pay(event)">
+<form id="payment_form">
     <label for='edz-price'>VALOR</label>
     <input type='text' name='edz-price' id='edz-price'/>
 
     <button type='submit' name='btn_login'>PAGAR</button>
 </form>
 <script type="text/javascript">
+
+
+    var form = document.getElementById("payment_form");
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        pay(event);
+    });
+
     function pay(event) {
-      event.preventDefault();
-        
         var jsonFormData = eduzzPayment.formDataToJson(event.target);
 
         eduzzPayment.setConfig({

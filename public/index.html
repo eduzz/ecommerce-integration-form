@@ -7,7 +7,8 @@
     <script src="../dist/index.min.js"></script>
 </head>
 <body>
-    <form onsubmit="pay(event)">
+
+    <form id="payment_form">
         <label for='edz-name'>Digite seu nome</label>
         <input type='text' name='edz-name' id='edz-name'/>
 
@@ -26,16 +27,20 @@
         <button type='submit' name='btn_login'>PAGAR</button>
     </form>
 <script type="text/javascript">
+
+    var form = document.getElementById("payment_form");
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        pay(event);
+    });
+
     function pay(event) {
-      // Cancelando o evento de atualização da página no onSubmit
-      event.preventDefault();
-        
-        // Usando a função formDataToJson, para pegar o que foi digitádo em nosso FORM para enviar ao Checkout.
         var jsonFormData = eduzzPayment.formDataToJson(event.target);
 
         // !!! Você pode inicar um loader ou fazer a validação dos dados aqui :)
 
-        //Iniciando as configurações da Eduzz
+        //Iniciando configurações da compra
         eduzzPayment.setConfig({
             returnUrl: 'https://meusite.com/retorno/pagina-de-obrigado/',
             postbackUrl: 'https://meusite.com/postback/',
@@ -45,10 +50,10 @@
                 phone: jsonFormData.cellphone, // Telefone inserido no form,
                 utm_source: 'valor_editado'
             },
-            productId: 52639, // contentId
-            checkoutProductId: 2048534, // VersionID,
-            description: 'Transação do curso através da API de pagamentos', // Apenas uma descrição
-            secret: 'Nw45Mz8maQQpFyMtPkQ2FyNRfUZ/YFxxdE95d3Q2bEEoG20', // Sua chave
+            productId: 38528,
+            checkoutProductId: 2050828, 
+            description: 'Exemplo funcional',
+            secret: 'IwosIio4LS09GSoENQc0ESJFJhggblt9ekJ3cHdiZB9/ST8ZZQxn',
         });
 
         var formData = {
