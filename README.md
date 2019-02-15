@@ -66,14 +66,14 @@ Seu site irá receber as informações em JavaScript através de um formulário 
         var jsonFormData = eduzzPayment.formDataToJson(event.target);
 
         eduzzPayment.setConfig({
-            returnUrl: 'https://meusite.com/retorno/',
+            returnUrl: 'https://meusite.com/retorno/minha-pagina-de-obrigado/',
             postbackUrl: 'https://meusite.com/postback/',
             queryParams: {
                 skip: 1
             },
             productId: 10000,
             checkoutProductId: 100000, 
-            description: 'Doação',
+            description: 'Valor Editável',
             secret: '922ec9531b1f94add983a8ce2ebdc97b',
         });
     
@@ -90,6 +90,39 @@ Seu site irá receber as informações em JavaScript através de um formulário 
 </script>
 ```
 
+### Exemplo passando apenas o valor do produto
+
+```html
+<form onsubmit="pay(event)">
+    <label for='edz-price'>VALOR</label>
+    <input type='text' name='edz-price' id='edz-price'/>
+
+    <button type='submit' name='btn_login'>PAGAR</button>
+</form>
+<script type="text/javascript">
+    function pay(event) {
+      event.preventDefault();
+        
+        var jsonFormData = eduzzPayment.formDataToJson(event.target);
+
+        eduzzPayment.setConfig({
+            returnUrl: 'https://meusite.com/retorno/minhapagina-de-obrigado/',
+            postbackUrl: 'https://meusite.com/postback/',
+            productId: 10000, 
+            checkoutProductId: 100000, 
+            description: 'Valor Editável',
+            secret: '922ec9531b1f94add983a8ce2ebdc97b',
+        });
+
+        var formData = {
+            price: Number(jsonFormData.price),
+        }
+
+        eduzzPayment.pay(formData);
+    }
+</script>
+```
+
 ### Configuração de envio
 
 Ao chamar a função `eduzzPayment.setConfig({ ... })` vocˆê dever'á passar os seguintes parâmetros preenchidos:
@@ -100,7 +133,7 @@ Ao chamar a função `eduzzPayment.setConfig({ ... })` vocˆê dever'á passar o
 | postbackUrl | Informações sobre o pagamento serão enviadas para esta URL |
 | queryParams | Objecto JSON com as informações que irão ser passadas pela URL |
 | productId | ID do seu Produto na Eduzz |
-| checkoutProductId | ID do seu Produto no Checkout |
+| checkoutProductId | É o VersionId de seu produto, https://sun.eduzz.com/productVersion/{ProductID} |
 | description | Descrição da venda, o título que será exibido |
 | secret | Chave fornecida pela Eduzz para operar com o ecommerce |
 
