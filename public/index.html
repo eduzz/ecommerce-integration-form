@@ -9,52 +9,55 @@
 <body>
 
     <form id="payment_form">
-    <label for='edz-name'>Digite seu nome</label>
-    <input type='text' name='edz-name' id='edz-name'/>
+        <label for='edz-name'>Digite seu nome</label>
+        <input type='text' name='edz-name' id='edz-name'/>
 
-    <label for='edz-email'>Digite seu email</label>
-    <input type='email' name='edz-email' id='edz-email'/>
+        <label for='edz-email'>Digite seu email</label>
+        <input type='email' name='edz-email' id='edz-email'/>
 
-    <label for='edz-cellphone'>Digite seu telefone</label>
-    <input type='tel' name='edz-cellphone' id='edz-cellphone'/>
+        <label for='edz-cellphone'>Digite seu telefone</label>
+        <input type='tel' name='edz-cellphone' id='edz-cellphone'/>
 
-    <label for='edz-document'>Digite seu documento</label>
-    <input type='text' name='edz-document' id='edz-document'/>
+        <label for='edz-document'>Digite seu documento</label>
+        <input type='text' name='edz-document' id='edz-document'/>
 
-    <label for='edz-price'>VALOR</label>
-    <input type='text' name='edz-price' id='edz-price'/>
+        <label for='edz-price'>VALOR</label>
+        <input type='text' name='edz-price' id='edz-price'/>
 
-    <button type='submit' name='btn_login'>PAGAR</button>
-</form>
+        <button type='submit' name='btn_login'>PAGAR</button>
+    </form>
 <script type="text/javascript">
 
-    form = document.getElementById("payment_form");
+    var form = document.getElementById("payment_form");
+
     form.addEventListener("submit", function(event) {
         event.preventDefault();
         pay(event);
     });
 
     function pay(event) {
-
         var jsonFormData = eduzzPayment.formDataToJson(event.target);
 
+        // !!! Você pode inicar um loader ou fazer a validação dos dados aqui :)
+
+        //Iniciando configurações da compra
         eduzzPayment.setConfig({
-            returnUrl: '',
+            returnUrl: 'https://meusite.com/retorno/pagina-de-obrigado/',
             postbackUrl: 'https://meusite.com/postback/',
-            queryParams: {
-                name: jsonFormData.name,
-                email: jsonFormData.email,
-                phone: jsonFormData.cellphone,
-                skip: 1
+            queryParams: { // Passando os parâmetros pela URL
+                name: jsonFormData.name, // Nome inserido no form
+                email: jsonFormData.email, // E-mail inserido no form
+                phone: jsonFormData.cellphone, // Telefone inserido no form,
+                utm_source: 'valor_editado'
             },
             productId: 38528,
             checkoutProductId: 2050828, 
-            description: 'Doação',
+            description: 'Exemplo funcional',
             secret: 'IwosIio4LS09GSoENQc0ESJFJhggblt9ekJ3cHdiZB9/ST8ZZQxn',
         });
 
         var formData = {
-        price: Number(jsonFormData.price),
+            price: Number(jsonFormData.price),
         }
 
         eduzzPayment.pay(formData);
