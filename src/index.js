@@ -61,7 +61,7 @@ async function pay(formData, errorHandler = null) {
         }
 
         const transaction = await axios.post(
-            'https://api-cs.eduzz.com/ecommerce/transaction',
+            'https://api-cs.eduzz.com/ecommerce/v2/transaction',
             requestData,
             {
                 headers: {
@@ -71,7 +71,7 @@ async function pay(formData, errorHandler = null) {
         );
 
         // Replace will be removed
-        window.location.href = transaction.data.payment_url + '?' + stringify(_config.queryParams);
+        window.location.href = transaction.data.payment_url + "&" + stringify(_config.queryParams);
     } catch (err) {
         typeof errorHandler === 'function' ? 
             errorHandler(err.response || err.message) : 
