@@ -20,7 +20,7 @@ async function pay(formData, errorHandler = null) {
             throw new Error('setConfig is not called correctly');
         
         const TOKEN = (await axios.post(
-            'https://api-cs.eduzz.com/ecommerce/v2/token/secret', {
+            'https://api-sun.eduzz.com/ecommerce/v2/token/secret', {
                 'secret': _config.secret
             }
         )).data.token;
@@ -61,7 +61,7 @@ async function pay(formData, errorHandler = null) {
         }
 
         const transaction = await axios.post(
-            'https://api-cs.eduzz.com/ecommerce/v2/transaction',
+            'https://api-sun.eduzz.com/ecommerce/v2/transaction',
             requestData,
             {
                 headers: {
