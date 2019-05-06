@@ -38,7 +38,6 @@ async function pay(formData, errorHandler = null) {
               'items': [
                 {
                   'product_id': _config.productId,
-                  'checkout_product_id': _config.checkoutProductId,
                   'description': _config.description,
                   'price': formData.price || null,
                   'amount': 1
