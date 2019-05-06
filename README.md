@@ -122,7 +122,6 @@ Seu site irá receber as informações em JavaScript através de um formulário 
             returnUrl: 'https://meusite.com/retorno/minhapagina-de-obrigado/',
             postbackUrl: 'https://meusite.com/postback/',
             productId: 10000, 
-            checkoutProductId: 100000, 
             description: 'Valor Editável',
             secret: '922ec9531b1f94add983a8ce2ebdc97b',
         });
