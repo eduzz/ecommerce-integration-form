@@ -79,7 +79,6 @@ Seu site irá receber as informações em JavaScript através de um formulário 
                 skip: 1
             },
             productId: 10000,
-            checkoutProductId: 100000, 
             description: 'Valor Editável',
             secret: '922ec9531b1f94add983a8ce2ebdc97b',
         });
@@ -147,7 +146,6 @@ Ao chamar a função `eduzzPayment.setConfig({ ... })` vocˆê dever'á passar o
 | postbackUrl | Informações sobre o pagamento serão enviadas para esta URL |
 | queryParams | Objecto JSON com as informações que irão ser passadas pela URL |
 | productId | ID do seu Produto na Eduzz |
-| checkoutProductId | É o VersionId de seu produto, https://sun.eduzz.com/productVersion/{ProductID} |
 | description | Descrição da venda, o título que será exibido |
 | secret | Chave fornecida pela Eduzz para operar com o ecommerce |
 
